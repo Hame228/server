@@ -1,0 +1,190 @@
+const express = require("express");
+const app = express();
+const mongoose = require("mongoose");
+app.use(express.json());
+
+
+const mongoUrl = "mongodb+srv://Hame:UmiJuJD2JDpkYiQ7@slimeclicker.eo5qn9j.mongodb.net/?retryWrites=true&w=majority"
+//const mongourl = "mongodb+srv://Hame:UmiJuJD2JDpkYiQ7@slimeclicker.eo5qn9j.mongodb.net/?retryWrites=true&w=majority"
+mongoose
+  .connect(mongoUrl)
+  .then(() => {
+    console.log("Database Connected");
+  })
+  .catch((e) => {
+    console.log(e);
+  });
+  require("./UserDetails");
+const User = mongoose.model("UserInfo");
+
+app.get("/", (req, res) => {
+    res.send({ status: "Started" });
+  });
+
+  app.post("/register", async (req, res) => {
+    const { name, email, rickroll, money } = req.body;
+    console.log(req.body);
+  
+    const oldUser = await User.findOne({ email: email });
+  
+    if (oldUser) {
+      return res.send({ data: "User already exists!!" });
+    }
+    //const encryptedPassword = await bcrypt.hash(password, 10);
+  
+    try {
+      await User.create({
+        name: name,
+        email: email,
+        rickroll,
+        money:money,
+      });
+      res.send({ status: "ok", data: "User Created" });
+    } catch (error) {
+      res.send({ status: "error", data: error });
+    }
+  });
+
+
+
+  /*app.get("/register", async(emaill) => {
+    //const {email} = req.body;
+    //console.log(req.body);
+  
+    const oldUser = await User.findOne({ email: emaill });
+  
+    if (oldUser) {
+      return res.send({ ab:req.body });
+    }
+  });*/
+
+  app.post("/login-user", async (req, res) => {
+    const { email} = req.body;
+    const oldUser = await User.findOne({ email: email });
+    console.log(oldUser.rickroll)
+    //const abo = await User.get
+  
+    if (!oldUser) {
+      return res.send({ data: "User doesn't exists!!" });
+    }
+  
+    if (res.status(201)) {
+      return res.send({data: oldUser.rickroll });
+    } else {
+      return res.send({ error: "error" });
+    }
+    /*if (await bcrypt.compare(password, oldUser.password)) {
+      const token = jwt.sign({ email: oldUser.email }, JWT_SECRET);
+  
+      if (res.status(201)) {
+        return res.send({ status: "ok", data: token });
+      } else {
+        return res.send({ error: "error" });
+      }
+    }*/
+  });
+
+  app.post("/login-user1", async (req, res) => {
+    const { email} = req.body;
+    const oldUser = await User.findOne({ email: email });
+    //console.log(oldUser.rickroll)
+    //const abo = await User.get
+  
+    if (!oldUser) {
+      return res.send({ data: "User doesn't exists!!" });
+    }
+  
+    if (res.status(201)) {
+      return res.send({data: oldUser });
+    } else {
+      return res.send({ error: "error" });
+    }
+    /*if (await bcrypt.compare(password, oldUser.password)) {
+      const token = jwt.sign({ email: oldUser.email }, JWT_SECRET);
+  
+      if (res.status(201)) {
+        return res.send({ status: "ok", data: token });
+      } else {
+        return res.send({ error: "error" });
+      }
+    }*/
+  });
+
+
+  app.post("/videoss", async (req, res) => {
+    const {email, rickroll} = req.body;
+    const oldUser = await User.findOne({ email: email });
+    //console.log(oldUser)
+    //const abo = await User.get
+  
+    if (!oldUser) {
+      return res.send({ data: "User doesn't exists!!" });
+    }
+    try {
+      await User.updateOne({
+        email: email,
+        //email:email,
+        //rickroll:rickroll
+      }, {
+        rickroll:rickroll,
+      });
+      res.send({ status: "ok", data: "User Updated" });
+    } catch (error) {
+      res.send({ status: "error", data: error });
+    }
+    
+  });
+
+
+  app.post("/updateMoney", async (req, res) => {
+    const {email, money} = req.body;
+    const oldUser = await User.findOne({ email: email });
+    //console.log(oldUser)
+    //const abo = await User.get
+  
+    if (!oldUser) {
+      return res.send({ data: "User doesn't exists!!" });
+    }
+    try {
+      await User.updateOne({
+        email: email,
+        //email:email,
+        //rickroll:rickroll
+      }, {
+        money:money,
+      });
+      res.send({ status: "ok", data: "User Updated" });
+    } catch (error) {
+      res.send({ status: "error", data: error });
+    }
+    
+  });
+
+  app.post("/sendVideo", async (req, res) => {
+    const {email, rickroll} = req.body;
+    const oldUser = await User.findOne({ email: email });
+    const abio = await User.find({})
+    //console.log(oldUser)
+    //const abo = await User.get
+  
+    if (!oldUser) {
+      return res.send({ data: "User doesn't exists!!" });
+    }
+    try {
+      await User.updateOne({
+        email: email,
+        //email:email,
+        //rickroll:rickroll
+      }, {
+        rickroll:rickroll,
+      });
+      res.send({ status: "ok", data: "User Updated", banna:abio });
+    } catch (error) {
+      res.send({ status: "error", data: error });
+    }
+    
+  });
+
+app.listen(8080, () => {
+    console.log("Node js server started.");
+  });
