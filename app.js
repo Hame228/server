@@ -199,6 +199,56 @@ app.get("/", (req, res) => {
     
   });
 
+app.post("/sendWhistle", async (req, res) => {
+    const {email, whistle} = req.body;
+    const oldUser = await User.findOne({ email: email });
+    const abio = await User.find({})
+    //console.log(oldUser)
+    //const abo = await User.get
+  
+    if (!oldUser) {
+      return res.send({ data: "User doesn't exists!!" });
+    }
+    try {
+      await User.updateOne({
+        email: email,
+        //email:email,
+        //rickroll:rickroll
+      }, {
+        whistle:whistle,
+      });
+      res.send({ status: "ok", data: "User Updated", banna:abio });
+    } catch (error) {
+      res.send({ status: "error", data: error });
+    }
+    
+  });
+
+app.post("/sendLebiga", async (req, res) => {
+    const {email, lebiga} = req.body;
+    const oldUser = await User.findOne({ email: email });
+    const abio = await User.find({})
+    //console.log(oldUser)
+    //const abo = await User.get
+  
+    if (!oldUser) {
+      return res.send({ data: "User doesn't exists!!" });
+    }
+    try {
+      await User.updateOne({
+        email: email,
+        //email:email,
+        //rickroll:rickroll
+      }, {
+        lebiga:lebiga,
+      });
+      res.send({ status: "ok", data: "User Updated", banna:abio });
+    } catch (error) {
+      res.send({ status: "error", data: error });
+    }
+    
+  });
+
 app.listen(8080, () => {
     console.log("Node js server started.");
   });
