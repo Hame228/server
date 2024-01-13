@@ -32,7 +32,7 @@ app.get("/", (req, res) => {
   });
 
   app.post("/register", async (req, res) => {
-    const { name, email, rickroll, money } = req.body;
+    const { name, email, rickroll, money, whistle, lebiga } = req.body;
     console.log(req.body);
   
     const oldUser = await User.findOne({ email: email });
@@ -47,6 +47,8 @@ app.get("/", (req, res) => {
         name: name,
         email: email,
         rickroll,
+        whistle,
+        lebiga,
         money:money,
       });
       res.send({ status: "ok", data: "User Created" });
@@ -122,7 +124,7 @@ app.get("/", (req, res) => {
 
 
   app.post("/videoss", async (req, res) => {
-    const {email, rickroll} = req.body;
+    const {email, rickroll, whistle, lebiga} = req.body;
     const oldUser = await User.findOne({ email: email });
     //console.log(oldUser)
     //const abo = await User.get
@@ -136,7 +138,9 @@ app.get("/", (req, res) => {
         //email:email,
         //rickroll:rickroll
       }, {
-        rickroll:rickroll,
+        rickroll:rickroll,,
+        whistle:whistle,
+        lebiga:lebiga
       });
       res.send({ status: "ok", data: "User Updated" });
     } catch (error) {
