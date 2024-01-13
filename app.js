@@ -2,12 +2,18 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const mongoose = require("mongoose");
+
+
 app.use(express.json());
 app.use(cors());
+
+const ipAddress = process.env.IP || "0.0.0.0";
+
 const port = 3002;
 app.listen(port, () => {
   console.log(`Сервер запущено на порті ${port}`);
 });
+
 const mongoUrl = "mongodb+srv://Hame:UmiJuJD2JDpkYiQ7@slimeclicker.eo5qn9j.mongodb.net/?retryWrites=true&w=majority"
 //const mongourl = "mongodb+srv://Hame:UmiJuJD2JDpkYiQ7@slimeclicker.eo5qn9j.mongodb.net/?retryWrites=true&w=majority"
 mongoose
