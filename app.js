@@ -249,6 +249,12 @@ app.post("/sendLebiga", async (req, res) => {
     
   });
 
+
+app.post("/sendData", async (req, res) => {
+    const abio = await User.find({})
+    res.send({ status: "ok", data: "User Updated", banna:abio }); 
+  });
+
 app.listen(8080, () => {
     console.log("Node js server started.");
   });
