@@ -138,7 +138,7 @@ app.get("/", (req, res) => {
         //email:email,
         //rickroll:rickroll
       }, {
-        rickroll:rickroll,,
+        rickroll:rickroll,
         whistle:whistle,
         lebiga:lebiga
       });
