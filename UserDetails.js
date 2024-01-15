@@ -9,6 +9,7 @@ const UserDetailSchema = new mongoose.Schema(
     lebiga: String,
     money: String,
     strange: String,
+    activity: String,
   },
   {
     collection: "UserInfo",
