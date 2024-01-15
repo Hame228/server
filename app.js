@@ -202,7 +202,7 @@ app.get("/", (req, res) => {
   });
 
 app.post("/updateActivity", async (req, res) => {
-    const {email,activity = req.body;
+    const {email,activity} = req.body;
     const oldUser = await User.findOne({ email: email });
     //console.log(oldUser)
     //const abo = await User.get
