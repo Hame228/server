@@ -194,7 +194,7 @@ app.get("/", (req, res) => {
   });
 
  app.post("/updateStrange", async (req, res) => {
-    const {email,money, strange} = req.body;
+    const {email,money, strange, strangePrice} = req.body;
     const oldUser = await User.findOne({ email: email });
     //console.log(oldUser)
     //const abo = await User.get
@@ -210,6 +210,7 @@ app.get("/", (req, res) => {
       }, {
         money:money,
         strange:strange,
+        strangePrice:strangePrice
       });
       res.send({ status: "ok", data: "User Updated" });
     } catch (error) {
@@ -217,6 +218,122 @@ app.get("/", (req, res) => {
     }
     
   });
+
+
+ app.post("/updateCritDmg", async (req, res) => {
+    const {email,money, CritDmg, CritDmgPrice} = req.body;
+    const oldUser = await User.findOne({ email: email });
+    //console.log(oldUser)
+    //const abo = await User.get
+  
+    if (!oldUser) {
+      return res.send({ data: "User doesn't exists!!" });
+    }
+    try {
+      await User.updateOne({
+        email: email,
+        //email:email,
+        //rickroll:rickroll
+      }, {
+        money:money,
+        CritDmg:CritDmg,
+        CritDmgPrice:CritDmgPrice
+      });
+      res.send({ status: "ok", data: "User Updated" });
+    } catch (error) {
+      res.send({ status: "error", data: error });
+    }
+    
+  });
+
+
+
+
+ app.post("/updateCritChance", async (req, res) => {
+    const {email,money, CritChance,CritChancePrice} = req.body;
+    const oldUser = await User.findOne({ email: email });
+    //console.log(oldUser)
+    //const abo = await User.get
+  
+    if (!oldUser) {
+      return res.send({ data: "User doesn't exists!!" });
+    }
+    try {
+      await User.updateOne({
+        email: email,
+        //email:email,
+        //rickroll:rickroll
+      }, {
+        money:money,
+        CritChance:CritChance,
+        CritChancePrice:CritChancePrice
+      });
+      res.send({ status: "ok", data: "User Updated" });
+    } catch (error) {
+      res.send({ status: "error", data: error });
+    }
+    
+  });
+
+
+
+
+ app.post("/updatePassive", async (req, res) => {
+    const {email,money, Passive,PassivePrice} = req.body;
+    const oldUser = await User.findOne({ email: email });
+    //console.log(oldUser)
+    //const abo = await User.get
+  
+    if (!oldUser) {
+      return res.send({ data: "User doesn't exists!!" });
+    }
+    try {
+      await User.updateOne({
+        email: email,
+        //email:email,
+        //rickroll:rickroll
+      }, {
+        money:money,
+       Passive:Passive,
+       PassivePrice:PassivePrice
+      });
+      res.send({ status: "ok", data: "User Updated" });
+    } catch (error) {
+      res.send({ status: "error", data: error });
+    }
+    
+  });
+
+
+
+
+app.post("/updatePassiveTime", async (req, res) => {
+    const {email,money, PassiveTime,PassiveTimePrice} = req.body;
+    const oldUser = await User.findOne({ email: email });
+    //console.log(oldUser)
+    //const abo = await User.get
+  
+    if (!oldUser) {
+      return res.send({ data: "User doesn't exists!!" });
+    }
+    try {
+      await User.updateOne({
+        email: email,
+        //email:email,
+        //rickroll:rickroll
+      }, {
+        money:money,
+       PassiveTime:PassiveTime,
+       PassiveTimePrice:PassiveTimePrice
+      });
+      res.send({ status: "ok", data: "User Updated" });
+    } catch (error) {
+      res.send({ status: "error", data: error });
+    }
+    
+  });
+
+
 
 app.post("/updateActivity", async (req, res) => {
     const {email,activity} = req.body;
