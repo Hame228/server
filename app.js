@@ -32,7 +32,15 @@ app.get("/", (req, res) => {
   });
 
   app.post("/register", async (req, res) => {
-    const { name, email, rickroll, money, whistle, lebiga, strange, activity } = req.body;
+    const { name, email, rickroll, money, whistle, lebiga, strange, activity,strangePrice,
+        CritDmg,
+        CritDmgPrice,
+        CritChance,
+        CritChancePrice,
+        Passive,
+        PassivePrice,
+        PassiveTime,
+        PassiveTimePrice } = req.body;
     console.log(req.body);
   
     const oldUser = await User.findOne({ email: email });
@@ -51,6 +59,15 @@ app.get("/", (req, res) => {
         lebiga,
         money:money,
         strange:strange,
+        strangePrice:strangePrice,
+        CritDmg:CritDmg,
+        CritDmgPrice:CritDmgPrice,
+        CritChance:CritChance,
+        CritChancePrice:CritChancePrice,
+        Passive:Passive,
+        PassivePrice:PassivePrice,
+        PassiveTime:PassiveTime,
+        PassiveTimePrice:PassiveTimePrice,
         activity: activity,
       });
       res.send({ status: "ok", data: "User Created" });
