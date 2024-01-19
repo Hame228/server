@@ -141,7 +141,6 @@ app.get("/", (req, res) => {
     }*/
   });
 
-
   app.post("/videoss", async (req, res) => {
     const {email, rickroll, whistle, lebiga} = req.body;
     const oldUser = await User.findOne({ email: email });
@@ -358,6 +357,34 @@ app.post("/updateActivity", async (req, res) => {
     }
     
   });
+
+
+  app.post("/updateName", async (req, res) => {
+    const {email, name} = req.body;
+    const oldUser = await User.findOne({ email: email });
+    //console.log(oldUser)
+    //const abo = await User.get
+  
+    if (!oldUser) {
+      return res.send({ data: "User doesn't exists!!" });
+    }
+    try {
+      await User.updateOne({
+        email: email,
+        //email:email,
+        //rickroll:rickroll
+      }, {
+        name:name,
+      });
+      res.send({ status: "ok", data: "User Updated" });
+    } catch (error) {
+      res.send({ status: "error", data: error });
+    }
+    
+  });
+
+
+
 
   app.post("/sendVideo", async (req, res) => {
     const {email, rickroll} = req.body;
