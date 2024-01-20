@@ -41,7 +41,10 @@ app.get("/", (req, res) => {
         PassivePrice,
         PassiveTime,
         PassiveTimePrice,
-          Clicks,Prestige} = req.body;
+        Clicks,
+        Prestige,
+        PrestigePrice,
+          } = req.body;
     console.log(req.body);
   
     const oldUser = await User.findOne({ email: email });
@@ -72,6 +75,7 @@ app.get("/", (req, res) => {
         activity: activity,
         Clicks:Clicks,
         Prestige:Prestige,
+        PrestigePrice:PrestigePrice,
       });
       res.send({ status: "ok", data: "User Created" });
     } catch (error) {
@@ -208,7 +212,8 @@ app.post("/updateall", async (req, res) => {
         PassivePrice,
         PassiveTime,
         PassiveTimePrice,
-        Prestige} = req.body;
+        Prestige,
+        PrestigePrice,} = req.body;
     const oldUser = await User.findOne({ email: email });
     //console.log(oldUser)
     //const abo = await User.get
@@ -234,6 +239,7 @@ app.post("/updateall", async (req, res) => {
         PassiveTime:PassiveTime,
         PassiveTimePrice:PassiveTimePrice,
         Prestige:Prestige,
+        PrestigePrice:PrestigePrice,
       });
       res.send({ status: "ok", data: "User Updated" });
     } catch (error) {
