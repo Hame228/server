@@ -40,7 +40,8 @@ app.get("/", (req, res) => {
         Passive,
         PassivePrice,
         PassiveTime,
-        PassiveTimePrice } = req.body;
+        PassiveTimePrice,
+          Clicks,Prestige} = req.body;
     console.log(req.body);
   
     const oldUser = await User.findOne({ email: email });
@@ -69,6 +70,8 @@ app.get("/", (req, res) => {
         PassiveTime:PassiveTime,
         PassiveTimePrice:PassiveTimePrice,
         activity: activity,
+        Clicks:Clicks,
+        Prestige:Prestige,
       });
       res.send({ status: "ok", data: "User Created" });
     } catch (error) {
@@ -169,7 +172,7 @@ app.get("/", (req, res) => {
 
 
   app.post("/updateMoney", async (req, res) => {
-    const {email, money} = req.body;
+    const {email, money, Clicks} = req.body;
     const oldUser = await User.findOne({ email: email });
     //console.log(oldUser)
     //const abo = await User.get
@@ -184,6 +187,7 @@ app.get("/", (req, res) => {
         //rickroll:rickroll
       }, {
         money:money,
+        Clicks:Clicks,
       });
       res.send({ status: "ok", data: "User Updated" });
     } catch (error) {
