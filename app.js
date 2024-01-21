@@ -44,6 +44,7 @@ app.get("/", (req, res) => {
         Clicks,
         Prestige,
         PrestigePrice,
+        Slime,
           } = req.body;
     console.log(req.body);
   
@@ -76,6 +77,7 @@ app.get("/", (req, res) => {
         Clicks:Clicks,
         Prestige:Prestige,
         PrestigePrice:PrestigePrice,
+        Slime: Slime,
       });
       res.send({ status: "ok", data: "User Created" });
     } catch (error) {
@@ -192,6 +194,33 @@ app.get("/", (req, res) => {
       }, {
         money:money,
         Clicks:Clicks,
+      });
+      res.send({ status: "ok", data: "User Updated" });
+    } catch (error) {
+      res.send({ status: "error", data: error });
+    }
+    
+  });
+
+
+
+app.post("/updateSlime", async (req, res) => {
+    const {email, money, Slime} = req.body;
+    const oldUser = await User.findOne({ email: email });
+    //console.log(oldUser)
+    //const abo = await User.get
+  
+    if (!oldUser) {
+      return res.send({ data: "User doesn't exists!!" });
+    }
+    try {
+      await User.updateOne({
+        email: email,
+        //email:email,
+        //rickroll:rickroll
+      }, {
+        money:money,
+        Slime:Slime,
       });
       res.send({ status: "ok", data: "User Updated" });
     } catch (error) {
