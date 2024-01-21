@@ -22,6 +22,7 @@ const UserDetailSchema = new mongoose.Schema(
     Clicks: String,
     Prestige: String,
     PrestigePrice: String,
+    Slime: String,
   },
   {
     collection: "UserInfo",
