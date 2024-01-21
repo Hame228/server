@@ -22,7 +22,8 @@ const UserDetailSchema = new mongoose.Schema(
     Clicks: String,
     Prestige: String,
     PrestigePrice: String,
-    Slime: String,
+    MinecraftSlimeBuyed: String,
+    GoldenSlimeBuyed: String,
     EquipedSlime: String,
   },
   {
