@@ -45,6 +45,7 @@ app.get("/", (req, res) => {
         Prestige,
         PrestigePrice,
         Slime,
+        EquipedSlime,
           } = req.body;
     console.log(req.body);
   
@@ -78,6 +79,7 @@ app.get("/", (req, res) => {
         Prestige:Prestige,
         PrestigePrice:PrestigePrice,
         Slime: Slime,
+        EquipedSlime:EquipedSlime,
       });
       res.send({ status: "ok", data: "User Created" });
     } catch (error) {
@@ -205,7 +207,7 @@ app.get("/", (req, res) => {
 
 
 app.post("/updateSlime", async (req, res) => {
-    const {email, money, Slime} = req.body;
+    const {email, money, Slime,EquipedSlime} = req.body;
     const oldUser = await User.findOne({ email: email });
     //console.log(oldUser)
     //const abo = await User.get
@@ -221,6 +223,35 @@ app.post("/updateSlime", async (req, res) => {
       }, {
         money:money,
         Slime:Slime,
+        EquipedSlime:EquipedSlime,
+      });
+      res.send({ status: "ok", data: "User Updated" });
+    } catch (error) {
+      res.send({ status: "error", data: error });
+    }
+    
+  });
+
+
+
+
+app.post("/updateEquipedSlime", async (req, res) => {
+    const {email, money,EquipedSlime} = req.body;
+    const oldUser = await User.findOne({ email: email });
+    //console.log(oldUser)
+    //const abo = await User.get
+  
+    if (!oldUser) {
+      return res.send({ data: "User doesn't exists!!" });
+    }
+    try {
+      await User.updateOne({
+        email: email,
+        //email:email,
+        //rickroll:rickroll
+      }, {
+        money:money,
+        EquipedSlime:EquipedSlime,
       });
       res.send({ status: "ok", data: "User Updated" });
     } catch (error) {
