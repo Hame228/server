@@ -23,6 +23,7 @@ const UserDetailSchema = new mongoose.Schema(
     Prestige: String,
     PrestigePrice: String,
     Slime: String,
+    EquipedSlime: String,
   },
   {
     collection: "UserInfo",
