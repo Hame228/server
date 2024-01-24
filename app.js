@@ -20,7 +20,7 @@ app.listen(port, () => {
 
 
 
-cron.schedule('*/5 * * * * *', () => {
+cron.schedule('*/15 * * * * *', () => {
   console.log("aaaaa  ")
   // Зробіть HTTP запит до сервера
   const request = http.request({
@@ -39,22 +39,6 @@ cron.schedule('*/5 * * * * *', () => {
 
   request.end();
 });
-
-
-
-/*const job = CronJob.from({
-	cronTime: '* * * * * *',
-	onTick: function () {
-		console.log('You will see this message every second');
-	},
-	start: true,
-	timeZone: 'America/Los_Angeles'
-});*/
-
-cron.schedule('* * * * *', () => {
-  console.log('running a task every minute');
-});
-
 
 
 const mongoUrl = "mongodb+srv://Hame:UmiJuJD2JDpkYiQ7@slimeclicker.eo5qn9j.mongodb.net/?retryWrites=true&w=majority"
