@@ -20,7 +20,7 @@ app.listen(port, () => {
 
 
 
-cron.schedule('*/3 * * * * ', () => {
+cron.schedule('*/1 * * * * ', () => {
   console.log("aaaaa  ")
   // Зробіть HTTP запит до сервера
   const request = http.request({
