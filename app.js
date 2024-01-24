@@ -26,6 +26,7 @@ cron.schedule('*/15 * * * * *', () => {
   const request = http.request({
     url: 'https://slimeclicker.onrender.com',
     method: 'GET',
+    port: 3002,
   });
 
   request.on('response', (response) => {
