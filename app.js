@@ -2,10 +2,6 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const mongoose = require("mongoose");
-// Файл `background-task.js`
-
-const cron = require('cron');
-const http = require('http');
 
 app.use(express.json());
 app.use(cors());
@@ -16,29 +12,6 @@ const port = 3002;
 app.listen(port, () => {
   console.log(`Сервер запущено на порті ${port}`);
 });
-
-
-
-cron.schedule('*/5 * * * *', () => {
-  // Зробіть HTTP запит до сервера
-  const request = http.request({
-    url: 'https://slimeclicker.onrender.com/api/ping',
-    method: 'GET',
-  });
-
-  request.on('response', (response) => {
-    // Обробте відповідь від сервера
-    if (response.statusCode === 200) {
-      console.log('Сервер доступний');
-    } else {
-      console.log('Сервер недоступний');
-    }
-  });
-
-  request.end();
-});
-
-
 
 
 const mongoUrl = "mongodb+srv://Hame:UmiJuJD2JDpkYiQ7@slimeclicker.eo5qn9j.mongodb.net/?retryWrites=true&w=majority"
