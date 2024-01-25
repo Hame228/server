@@ -66,6 +66,8 @@ cron.schedule('*/8 * * * * ', () => {
 
   // Збережіть запис
   record.save();
+
+  record.remove();
 });
 
 app.get("/", (req, res) => {
