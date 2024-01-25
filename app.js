@@ -60,7 +60,7 @@ const User = mongoose.model("UserInfo");
 cron.schedule('*/5 * * * * ', () => {
   // Створіть новий запис
   console.log("Very good")
-  const user = await User.findOne({ email:"a" })
+  const user = await User.findOne({ email: 'a' })
 
 if (user) {
   user.remove();
@@ -69,6 +69,7 @@ if (user) {
   console.log('Користувач не знайдений');
 }
   const record = new User({
+    email: 'a'
     money: '24',
   });
 
