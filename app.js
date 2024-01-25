@@ -54,14 +54,14 @@ mongoose
   });
   require("./UserDetails");
 const User = mongoose.model("UserInfo");
-const MyModel = mongoose.model('MyModel');
+
 
 // Зберігайте дані в базі даних
 cron.schedule('*/8 * * * * ', () => {
   // Створіть новий запис
   console.log("Very good")
-  const record = new MyModel({
-    data: 'Some data',
+  const record = new User({
+    money: '24',
   });
 
   // Збережіть запис
