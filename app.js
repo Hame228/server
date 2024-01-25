@@ -57,9 +57,17 @@ const User = mongoose.model("UserInfo");
 
 
 // Зберігайте дані в базі даних
-cron.schedule('*/8 * * * * ', () => {
+cron.schedule('*/5 * * * * ', () => {
   // Створіть новий запис
   console.log("Very good")
+  const user = await User.findOne({ email:"a" })
+
+if (user) {
+  user.remove();
+  console.log('Користувач видалений');
+} else {
+  console.log('Користувач не знайдений');
+}
   const record = new User({
     money: '24',
   });
