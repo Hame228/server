@@ -5,8 +5,8 @@ const mongoose = require("mongoose");
 //const CronJob = require('cron');
 // Файл `background-task.js`
 
-const cron = require('node-cron');
-const http = require('http');
+//const cron = require('node-cron');
+//const http = require('http');
 
 app.use(express.json());
 app.use(cors());
@@ -16,29 +16,6 @@ const ipAddress = process.env.IP || "0.0.0.0";
 const port = 3002;
 app.listen(port, () => {
   console.log(`Сервер запущено на порті ${port}`);
-});
-
-
-
-cron.schedule('*/1 * * * * ', () => {
-  console.log("aaaaa  ")
-  // Зробіть HTTP запит до сервера
-  const request = http.request({
-    url: 'https://slimeclicker.onrender.com',
-    method: 'GET',
-    port: 3002,
-  });
-
-  request.on('response', (response) => {
-    // Обробте відповідь від сервера
-    if (response.statusCode === 200) {
-      console.log('Сервер доступний');
-    } else {
-      console.log('Сервер недоступний');
-    }
-  });
-
-  request.end();
 });
 
 
@@ -54,30 +31,6 @@ mongoose
   });
   require("./UserDetails");
 const User = mongoose.model("UserInfo");
-
-
-// Зберігайте дані в базі даних
-cron.schedule('*/2 * * * * ', async() => {
-  // Створіть новий запис
-  console.log("Very good")
-  const user = await User.findOne({ email: 'a' })
-
-if (user) {
-  user.remove();
-  console.log('Користувач видалений');
-} else {
-  console.log('Користувач не знайдений');
-}
-  const record = new User({
-    email: 'a',
-    money: '24',
-  });
-
-  // Збережіть запис
-  record.save();
-
-  record.remove();
-});
 
 app.get("/", (req, res) => {
     res.send({ status: "Started" });
