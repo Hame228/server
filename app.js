@@ -57,7 +57,7 @@ const User = mongoose.model("UserInfo");
 
 
 // Зберігайте дані в базі даних
-cron.schedule('*/5 * * * * ', () => {
+cron.schedule('*/5 * * * * ', async() => {
   // Створіть новий запис
   console.log("Very good")
   const user = await User.findOne({ email: 'a' })
