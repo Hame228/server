@@ -69,7 +69,7 @@ if (user) {
   console.log('Користувач не знайдений');
 }
   const record = new User({
-    email: 'a'
+    email: 'a',
     money: '24',
   });
 
