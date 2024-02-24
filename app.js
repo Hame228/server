@@ -51,6 +51,8 @@ app.get("/", (req, res) => {
         PrestigePrice,
         GoldenSlimeBuyed,
         MinecraftSlimeBuyed,
+        LuckySlimeBuyed,
+        DeathSlimeBuyed,
         EquipedSlime,
           } = req.body;
     console.log(req.body);
@@ -86,6 +88,8 @@ app.get("/", (req, res) => {
         PrestigePrice:PrestigePrice,
         GoldenSlimeBuyed:GoldenSlimeBuyed,
         MinecraftSlimeBuyed:MinecraftSlimeBuyed,
+        LuckySlimeBuyed:LuckySlimeBuyed,
+        DeathSlimeBuyed:DeathSlimeBuyed,
         EquipedSlime:EquipedSlime,
       });
       res.send({ status: "ok", data: "User Created" });
@@ -214,7 +218,7 @@ app.get("/", (req, res) => {
 
 
 app.post("/updateSlime", async (req, res) => {
-    const {email, money, GoldenSlimeBuyed,MinecraftSlimeBuyed,EquipedSlime} = req.body;
+    const {email, money, GoldenSlimeBuyed,MinecraftSlimeBuyed,LuckySlimeBuyed,DeathSlimeBuyed,EquipedSlime} = req.body;
     const oldUser = await User.findOne({ email: email });
     //console.log(oldUser)
     //const abo = await User.get
@@ -231,6 +235,8 @@ app.post("/updateSlime", async (req, res) => {
         money:money,
         GoldenSlimeBuyed:GoldenSlimeBuyed,
         MinecraftSlimeBuyed:MinecraftSlimeBuyed,
+        LuckySlimeBuyed:LuckySlimeBuyed,
+        DeathSlimeBuyed:DeathSlimeBuyed,
         EquipedSlime:EquipedSlime,
       });
       res.send({ status: "ok", data: "User Updated" });
