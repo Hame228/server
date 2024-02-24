@@ -24,6 +24,8 @@ const UserDetailSchema = new mongoose.Schema(
     PrestigePrice: String,
     MinecraftSlimeBuyed: String,
     GoldenSlimeBuyed: String,
+    LuckySlimeBuyed: String,
+    DeathSlimeBuyed: String,
     EquipedSlime: String,
   },
   {
